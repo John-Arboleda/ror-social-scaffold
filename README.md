@@ -1,6 +1,6 @@
-# Scaffold for social media app with Ruby on Rails
+# Stay in Touch
 
-> This repo includes intial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
+This is a social media app in which users can create posts, read posts of different users, comment, like, dislike, send and accept friendship invitaitons. 
 
 ## Built With
 
@@ -71,7 +71,10 @@ TBA
 
 ## Authors
 
-TBA
+**John Arboleda**
+- GitHub: [@John-Arboleda](https://github.com/John-Arboleda)
+- Twitter: [@John_J_Arboleda](https://twitter.com/John_J_Arboleda)
+- LinkedIn: [@john-arboleda](https://www.linkedin.com/in/john-arboleda/)
 
 ## 🤝 Contributing
 
@@ -89,5 +92,5 @@ TBA
 
 ## 📝 License
 
-TBA
+This project is [MIT](./LICENSE) licensed.
 
