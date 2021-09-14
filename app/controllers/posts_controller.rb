@@ -21,7 +21,10 @@ class PostsController < ApplicationController
 
   def timeline_posts
     target_posts = []
-    current_user.friends_id.each do |friend_id|
+    current_user.sender_friends_id.each do |friend_id|
+      target_posts << Post.where(user_id: friend_id).all
+    end
+    current_user.receiver_friends_id.each do |friend_id|
       target_posts << Post.where(user_id: friend_id).all
     end
     target_posts << current_user.posts
