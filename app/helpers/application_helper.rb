@@ -19,27 +19,26 @@ module ApplicationHelper
   def friend?(user)
     is_friend_sender = current_user.senders.find_by(receiver_id: user.id)
     is_friend_receiver = current_user.receivers.find_by(sender_id: user.id)
-    
+
     if is_friend_sender
       if is_friend_sender.status.zero?
         link_to '| Cancel Friendship Invitation', friendship_path(id: is_friend_sender.id), method: :delete,
-                                                                                     class: 'profile-link'
+                                                                                            class: 'profile-link'
       else
         link_to '| Unfriend', friendship_path(id: is_friend_sender.id), method: :delete, class: 'profile-link'
       end
     elsif current_user.id == user.id
       nil
-    else
-      if is_friend_receiver
-        if is_friend_receiver.status.zero?
-          link_to '| Accept Friendship', accept_friendship_path(id: is_friend_receiver.id), method: :put, class: 'profile-link'
-        else
-          link_to '| Unfriend', friendship_path(id: is_friend_receiver.id), method: :delete, class: 'profile-link'
-        end
+    elsif is_friend_receiver
+      if is_friend_receiver.status.zero?
+        link_to '| Accept Friendship', accept_friendship_path(id: is_friend_receiver.id), method: :put,
+                                                                                          class: 'profile-link'
       else
-        link_to '| Invite to Friendship', new_friendship_path(receiver_id: user.id), method: :post,
-                                                                                     class: 'profile-link'
+        link_to '| Unfriend', friendship_path(id: is_friend_receiver.id), method: :delete, class: 'profile-link'
       end
+    else
+      link_to '| Invite to Friendship', new_friendship_path(receiver_id: user.id), method: :post,
+                                                                                   class: 'profile-link'
     end
   end
 end
