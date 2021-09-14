@@ -7,7 +7,7 @@ module ApplicationHelper
     end
   end
 
-  def like_or_dislike_btn(post)
+  def like_btn(post)
     like = Like.find_by(post: post, user: current_user)
     if like
       link_to('Unlike', post_like_path(id: like.id, post_id: post.id), method: :delete)
@@ -20,7 +20,8 @@ module ApplicationHelper
     is_friend = current_user.senders.find_by(receiver_id: user.id)
     if is_friend
       if is_friend.status.zero?
-        link_to '| Cancel Friendship Invitation', friendship_path(id: is_friend.id), method: :delete, class: 'profile-link'
+        link_to '| Cancel Friendship Invitation', friendship_path(id: is_friend.id), method: :delete,
+                                                                                     class: 'profile-link'
       else
         link_to '| Unfriend', friendship_path(id: is_friend.id), method: :delete, class: 'profile-link'
       end
@@ -31,11 +32,10 @@ module ApplicationHelper
       if is_friend
         if is_friend.status.zero?
           link_to '| Accept Friendship', accept_friendship_path(id: is_friend.id), method: :put, class: 'profile-link'
-        else
-          nil
         end
       else
-        link_to '| Invite to Friendship', new_friendship_path(receiver_id: user.id), method: :post, class: 'profile-link'
+        link_to '| Invite to Friendship', new_friendship_path(receiver_id: user.id), method: :post,
+                                                                                     class: 'profile-link'
       end
     end
   end
