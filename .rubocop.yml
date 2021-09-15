@@ -26,6 +26,8 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   ExcludedMethods: ["describe"]
   Max: 30
+Metrics/PerceivedComplexity:
+  Max: 9
 
 Style/Documentation:
   Enabled: false
