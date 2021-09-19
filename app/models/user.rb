@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  ###############33
+
   has_many :invitations_received, foreign_key: :invitation_sender_id, class_name: 'Friendship', dependent: :destroy
   has_many :users_who_invited_me, through: :invitations_received, source: :invitation_sender, dependent: :destroy
 
@@ -23,17 +23,17 @@ class User < ApplicationRecord
   end
 
   def accept_request(user)
-    friend_request = user_invitations_list.where(invitation_sende_id: user.id).first
+    friend_request = invitation_list.where(invitation_sende_id: user.id).first
     friend_request.update(status: true)
   end
 
   def reject_request(user)
-    friend_request = user_invitations_list.where(invitation_sende_id: user.id).first
+    friend_request = invitation_list.where(invitation_sende_id: user.id).first
     friend_request.destroy
   end
 
   def friends
-    User.where(id: user_invitations_list.where(status: true).pluck(:invitation_sender_id))
+    User.where(id: invitation_list.where(status: true).pluck(:invitation_sender_id))
   end
 
   def friend?(user)
@@ -48,12 +48,10 @@ class User < ApplicationRecord
     pending_requests_sent.include?(user)
   end
 
-  # People who haven't accepted my request yet
   def pending_requests_sent
     invitations_sent.map { |friendship| friendship.invitation_receiver unless friendship.status }
   end
 
-  # People who I haven't accepted their request yet
   def pending_requests_received
     invitations_received.map { |friendship| friendship.invitation_sender unless friendship.status }
   end
