@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   def accept_request(user)
     friend_request = user_invitations_list.where(invitation_sende_id: user.id).first
-    friend_request.update(accepted: true)
+    friend_request.update(status: true)
   end
 
   def reject_request(user)
@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def friends
-    User.where(id: user_invitations_list.where(accepted: true).pluck(:invitation_sender_id))
+    User.where(id: user_invitations_list.where(status: true).pluck(:invitation_sender_id))
   end
 
   def friend?(user)
