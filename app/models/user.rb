@@ -35,7 +35,7 @@ class User < ApplicationRecord
   def friends
     friend_sender = User.where(id: invitations_sent.where(status: true).pluck(:invitation_receiver_id))
     friend_receiver = User.where(id: invitations_received.where(status: true).pluck(:invitation_sender_id))
-    is_a_friend = friend_sender + friend_receiver
+    friend_sender + friend_receiver
   end
 
   def friend?(user)

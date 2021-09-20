@@ -40,8 +40,8 @@ RSpec.describe 'See friend\'s posts', type: :feature do
     fill_in 'post_content', with: 'My friend can see this post'
     click_on 'Save'
     sleep(1)
-    visit '/users/1'
-    click_link '| Invite to Friendship'
+    visit '/users'
+    click_link 'Add Friend'
     sleep(1)
     click_link 'Sign out'
     sleep(1)
@@ -50,8 +50,8 @@ RSpec.describe 'See friend\'s posts', type: :feature do
     fill_in 'Password', with: sender.password
     click_on 'Log in'
     sleep(1)
-    visit '/users/2'
-    click_link '| Accept Friendship'
+    click_link 'My profile'
+    click_link 'Accept Request'
     sleep(1)
     visit root_path
     expect(page).to have_content('My friend can see this post')

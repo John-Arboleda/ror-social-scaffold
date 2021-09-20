@@ -7,7 +7,7 @@ class Friendship < ApplicationRecord
     friendship = Friendship.find(id)
     return unless friendship
 
-    Friendship.create(invitation_sender_id: friendship.invitation_sender_id, invitation_receiver_id: friendship.invitation_receiver_id,
-                      status: true)
+    Friendship.create(invitation_sender_id: friendship.invitation_sender_id,
+                      invitation_receiver_id: friendship.invitation_receiver_id, status: true)
   end
 end
