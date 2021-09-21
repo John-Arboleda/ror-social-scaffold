@@ -5,7 +5,7 @@ class Friendship < ApplicationRecord
 
   def add_reverse_friendship_pair
     friendship = Friendship.find(id)
-    return unless friendship && friendship.status
+    return unless friendship&.status
 
     Friendship.create(invitation_sender_id: friendship.invitation_receiver_id,
                       invitation_receiver_id: friendship.invitation_sender_id, status: true)
