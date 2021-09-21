@@ -21,14 +21,17 @@ class PostsController < ApplicationController
 
   def timeline_posts
     target_posts = []
-    current_user.sender_friends_id.each do |friend_id|
-      target_posts << Post.where(user_id: friend_id).all
-    end
-    current_user.receiver_friends_id.each do |friend_id|
-      target_posts << Post.where(user_id: friend_id).all
+    # current_user.sender_friends_id.each do |friend_id|
+    #   target_posts << Post.where(user_id: friend_id).all
+    # end
+    # current_user.receiver_friends_id.each do |friend_id|
+    #   target_posts << Post.where(user_id: friend_id).all
+    # end
+    current_user.friends.each do |friend|
+      target_posts << friend.posts
     end
     target_posts << current_user.posts
-    @timeline_posts ||= target_posts.flatten.sort_by(&:updated_at).reverse.uniq
+    @timeline_posts ||= target_posts.flatten.sort_by(&:updated_at).reverse
   end
 
   def post_params

@@ -1,8 +1,25 @@
 <section class="users-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
-  <span class="profile-link">
-    <%= friend?(@user) %>
-  </span>
+  <h2><%= @user.name %></h2>
+
+  <% if current_user == @user %>
+    <hr>
+    <br>
+    <h3>Friendship Invitations:</h3>
+      <ul>
+        <% if current_user.pending_requests_received.any? %>
+          <% current_user.pending_requests_received.each do |user| %>
+            <li>
+              <%= user.name %>
+              <%= render 'friendship_status', user: user %>
+            </li>
+          <% end %>
+        <% else %>
+          <span>No friendship requests pending</span>
+        <% end %>
+      </ul>
+      <br>
+    <hr>
+  <% end %>
 </section>
 <article class="timeline">
   <h3>Recent posts:</h3>

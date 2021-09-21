@@ -1,0 +1,13 @@
+<% unless current_user == user %>
+<br>
+  <% if current_user.friend?(user) %>
+    <span class="status">Already a friend</span>
+  <% elsif current_user.pending_requests_sent?(user)  %>
+    <span class="status">Invitation Pending</span>
+  <% elsif current_user.pending_requests_received?(user) %>
+    <%= link_to 'Accept Request', friendship_path(id: friendship_id(user.id, current_user.id)), method: :patch %> | 
+    <%= link_to 'Cancel Request', friendship_path(id: friendship_id(user.id, current_user.id)), method: :delete %>
+  <% else %>
+    <%= link_to 'Add Friend', friendships_path(invitation_receiver_id: user.id), method: :post %>
+  <% end %>
+<% end %>
