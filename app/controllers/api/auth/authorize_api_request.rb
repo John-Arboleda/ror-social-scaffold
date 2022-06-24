@@ -1,5 +1,3 @@
-# rubocop: disable Lint/MissingSuper
-
 class Api::Auth::AuthorizeApiRequest < ApiApplicationController
   include Message
 
@@ -38,4 +36,3 @@ class Api::Auth::AuthorizeApiRequest < ApiApplicationController
     return headers['Authorization'].split.last if headers['Authorization'].present?
   end
 end
-# rubocop: enable Lint/MissingSuper
