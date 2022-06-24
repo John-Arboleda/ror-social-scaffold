@@ -4,12 +4,12 @@ This is a social media app in which users can create posts, read posts of differ
 
 ## Built With
 
-- Ruby v2.7.0
+- Ruby v2.7.4
 - Ruby on Rails v5.2.4
 
 ## Live Demo
 
-TBA
+[Stay in touch](https://protected-wildwood-05684.herokuapp.com/)
 
 
 ## Getting Started
@@ -18,7 +18,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-Ruby: 2.7.0
+Ruby: 2.7.4
 Rails: 5.2.3
 Postgres: >=9.5
 
@@ -62,12 +62,6 @@ Open `http://localhost:3000/` in your browser.
 ```
     rpsec --format documentation
 ```
-
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
-
-### Deployment
-
-TBA
 
 ## Authors
 
