@@ -1,6 +1,5 @@
 class Api::Users::Posts::CommentsController < ApiApplicationController
 	include Response
-	include ExceptionHandler
 
 	def index
 		@post = Post.find(params[:post_id])
@@ -8,6 +7,6 @@ class Api::Users::Posts::CommentsController < ApiApplicationController
 	end
 
 	def create
-		byebug
+
 	end
 end
