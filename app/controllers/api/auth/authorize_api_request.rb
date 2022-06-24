@@ -35,7 +35,7 @@ class Api::Auth::AuthorizeApiRequest < ApiApplicationController
 
   # check for token in `Authorization` header
   def http_auth_header
-    return headers['Authorization'].split(' ').last if headers['Authorization'].present?
+    return headers['Authorization'].split.last if headers['Authorization'].present?
   end
 end
 # rubocop: enable Lint/MissingSuper

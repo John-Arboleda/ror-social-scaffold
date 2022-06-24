@@ -1,35 +1,17 @@
-class Api::Users::Posts::CommentsController < ApiApplicationController
+class Api::AuthenticationController < ApiApplicationController
   include Response
 
-  before_action :set_user, only: [:create]
-  before_action :set_article, only: %i[index create]
+  skip_before_action :authorize_request, only: :authenticate
 
-  def index
-    json_response(@post.comments)
-  end
-
-  def create
-    @comment = Comment.new(create_params)
-    @comment.user = current_user
-    @comment.post = @post
-    if @comment.save
-      json_response({ data: 'Comment was saved successfully!' }, 201)
-    else
-      json_response('Sorry, something went wrong!')
-    end
+  def authenticate
+    auth_token =
+      Api::Auth::AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
+    json_response(auth_token: auth_token)
   end
 
   private
 
-  def create_params
-    params.require(:comment).permit(:content)
-  end
-
-  def set_user
-    @user = User.find(params[:user_id])
-  end
-
-  def set_article
-    @post = Post.find(params[:post_id])
+  def auth_params
+    params.permit(:email, :password)
   end
 end
